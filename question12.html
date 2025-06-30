@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>ストレス診断 - 質問12</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff6fb;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .question {
+      margin: 20px 0;
+    }
+
+    .option-label {
+      display: block;
+      background: #f0f0f0;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .option-label:hover {
+      background: #e0e0e0;
+    }
+
+    .option-input {
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #ccc;
+      color: white;
+      border-radius: 8px;
+      cursor: not-allowed;
+    }
+
+    button.active {
+      background: #ff69b4;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1> ストレス診断 </h1>
+    <div class="question">
+      <p>Q12. 気持ちが沈んでいるとき、よくする行動は？</p>
+      <label class="option-label">
+        <input type="radio" name="q12" value="A" class="option-input" /> 原因を紙に書き出して整理する
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q12" value="B" class="option-input" /> ただひたすら泣く／涙が出る
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q12" value="C" class="option-input" /> 周囲に当たってしまう
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q12" value="D" class="option-input" /> 何もせず寝て過ごす
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q12" value="E" class="option-input" /> SNSやLINEで人とつながろうとする
+      </label>
+      <label class="option-label">
+        <input type="radio" name="q12" value="F" class="option-input" /> 「この体験もきっと意味がある」と思う
+      </label>
+    </div>
+    <button id="nextBtn" onclick="saveAndNext()" disabled>次へ ➡</button>
+  </div>
+
+  <script>
+    const radios = document.querySelectorAll('input[name="q12"]');
+    const nextBtn = document.getElementById('nextBtn');
+
+    radios.forEach(r => {
+      r.addEventListener('change', () => {
+        nextBtn.disabled = false;
+        nextBtn.classList.add("active");
+      });
+    });
+
+    function saveAndNext() {
+      const selected = document.querySelector('input[name="q12"]:checked');
+      if (!selected) return;
+      localStorage.setItem('q12', selected.value);
+      window.location.href = "question13.html";
+    }
+  </script>
+</body>
+</html>
